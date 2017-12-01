@@ -1,0 +1,26 @@
+{
+    "name": "cjayet/majestic-seo-api",
+    "description": "PHP library for making requests to the Majestic SEO API, based on nticaric/majestic-seo-api",
+    "homepage": "https://github.com/cjayet/majestic-seo-api",
+    "license": "GNU General Public License",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Clement JAYET",
+            "email": "c.jayet@optimiz.me"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "nesbot/carbon": "~1.0",
+        "guzzlehttp/guzzle": ">=6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "cjayet\\Majestic\\": "src/"
+        }
+    }
+}
