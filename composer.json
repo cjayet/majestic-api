@@ -1,5 +1,5 @@
 {
-    "name": "cjayet/majestic-seo",
+    "name": "optimizme/majestic-seo",
     "description": "PHP library for making requests to the Majestic SEO API, based on nticaric/majestic-seo-api",
     "homepage": "https://github.com/cjayet/majestic-api",
     "license": "GNU General Public License",
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "cjayet\\MajesticSEO\\": "src/"
+            "Optimizme\\MajesticSEO\\": "src/"
         }
     }
 }

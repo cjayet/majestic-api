@@ -1,17 +1,15 @@
 <?php
-namespace cjayet\MajesticSEO;
-
-use GuzzleHttp\Client;
+namespace Optimizme\MajesticSEO;
 
 class MajesticAPIService
 {
 
-    private $endpoint = "https://api.majestic.com/";
+    private $endpoint = "https://api.majestic.com/api/";
 
     public function __construct($apiKey, $sandbox = false)
     {
         if ($sandbox == true) {
-            $this->endpoint = "https://developer.majestic.com/";
+            $this->endpoint = "https://developer.majestic.com/api/";
         }
         $this->responseType = "json";
         $this->apiKey = $apiKey;
@@ -24,14 +22,12 @@ class MajesticAPIService
 
     public function executeCommand($command, $params = array())
     {
-        $client = new GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client();
 
-        $params["cmd"] = $command;
-        $params["app_api_key"] = $this->apiKey;
-
-        return $client->request('GET', $this->endpoint . "/" . $this->responseType, [
+        return $client->request('GET', $this->endpoint . '/' . $this->responseType . '?app_api_key=' . $this->apiKey . '&cmd=' . $command . '&item=majestic.com&Count=5&datasource=fresh', [
             'query' => $params
         ]);
+
     }
 
     public function __call($name, $arguments)
