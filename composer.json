@@ -1,7 +1,7 @@
 {
-    "name": "cjayet/majestic-seo-api",
+    "name": "cjayet/majestic-api",
     "description": "PHP library for making requests to the Majestic SEO API, based on nticaric/majestic-seo-api",
-    "homepage": "https://github.com/cjayet/majestic-seo-api",
+    "homepage": "https://github.com/cjayet/majestic-api",
     "license": "GNU General Public License",
     "type": "library",
     "authors": [

@@ -4,13 +4,12 @@ use GuzzleHttp\Client;
 
 class MajesticAPIService {
 
-    private $endpoint = "http://api.majestic.com/api/";
+    private $endpoint = "https://api.majestic.com/";
     
     public function __construct($apiKey, $sandbox = false)
     {
         if($sandbox == true) {
-            //$this->endpoint = "http://developer.majestic.com/api";
-            $this->endpoint = "http://developer.majestic.com/api";
+            $this->endpoint = "https://developer.majestic.com/";
         }
         $this->responseType = "json";
         $this->apiKey = $apiKey;
@@ -28,10 +27,9 @@ class MajesticAPIService {
 		$params["cmd"]         = $command;
         $params["app_api_key"] = $this->apiKey;
 		
-		$res = $client->request('GET', $this->endpoint ."/". $this->responseType, [
+		return $client->request('GET', $this->endpoint ."/". $this->responseType, [
 			'query' => $params
 		]);
-		
     }
 
     public function __call($name, $arguments)
