@@ -1,4 +1,4 @@
-<?php namespace cjayet\Majestic;
+<?php namespace cjayet\MajesticSEO;
 
 use GuzzleHttp\Client;
 
