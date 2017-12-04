@@ -1,14 +1,16 @@
-<?php namespace cjayet\MajesticSEO;
+<?php
+namespace cjayet\MajesticSEO;
 
 use GuzzleHttp\Client;
 
-class MajesticAPIService {
+class MajesticAPIService
+{
 
     private $endpoint = "https://api.majestic.com/";
-    
+
     public function __construct($apiKey, $sandbox = false)
     {
-        if($sandbox == true) {
+        if ($sandbox == true) {
             $this->endpoint = "https://developer.majestic.com/";
         }
         $this->responseType = "json";
@@ -22,28 +24,28 @@ class MajesticAPIService {
 
     public function executeCommand($command, $params = array())
     {
-		$client = new GuzzleHttp\Client();
-		
-		$params["cmd"]         = $command;
+        $client = new GuzzleHttp\Client();
+
+        $params["cmd"] = $command;
         $params["app_api_key"] = $this->apiKey;
-		
-		return $client->request('GET', $this->endpoint ."/". $this->responseType, [
-			'query' => $params
-		]);
+
+        return $client->request('GET', $this->endpoint . "/" . $this->responseType, [
+            'query' => $params
+        ]);
     }
 
     public function __call($name, $arguments)
     {
         $command = ucfirst($name);
-        if(isset($arguments[1])) {
-            $params  = $arguments[1];
+        if (isset($arguments[1])) {
+            $params = $arguments[1];
         } else {
             $params = array();
         }
 
-        if(is_string($arguments[0])) {
+        if (is_string($arguments[0])) {
             $params['item'] = $arguments[0];
-        } elseif(is_array($arguments[0])) {
+        } elseif (is_array($arguments[0])) {
             $counter = 0;
             foreach ($arguments[0] as $url) {
                 $params['item' . $counter] = $url;
