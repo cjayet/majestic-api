@@ -3,33 +3,48 @@ namespace Optimizme\MajesticSEO;
 
 class MajesticAPIService
 {
+    private $endpoint ;
 
-    private $endpoint = "https://api.majestic.com/api/";
-
-    public function __construct($apiKey, $sandbox = false)
+    /**
+     * MajesticAPIService constructor.
+     * @param $apiKey
+     * @param bool $develop
+     */
+    public function __construct($apiKey, $develop = false)
     {
-        if ($sandbox == true) {
-            $this->endpoint = "https://developer.majestic.com/api/";
+        if ($develop == true) {
+            $this->endpoint = 'https://developer.majestic.com/api';
+        } else {
+            $this->endpoint = 'https://api.majestic.com/api';
         }
         $this->responseType = "json";
         $this->apiKey = $apiKey;
     }
 
-    public function setResponseType($type)
-    {
-        $this->responseType = $type;
-    }
-
+    /**
+     * @param $command
+     * @param array $params
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
     public function executeCommand($command, $params = array())
     {
         $client = new \GuzzleHttp\Client();
+        $url = $this->endpoint .'/'. $this->responseType;
 
-        return $client->request('GET', $this->endpoint . '/' . $this->responseType . '?app_api_key=' . $this->apiKey . '&cmd=' . $command . '&item=majestic.com&Count=5&datasource=fresh', [
+        $params['cmd'] = $command;
+        $params['app_api_key'] = $this->apiKey;
+
+        return $client->request('GET', $url, [
             'query' => $params
         ]);
 
     }
 
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
     public function __call($name, $arguments)
     {
         $command = ucfirst($name);
